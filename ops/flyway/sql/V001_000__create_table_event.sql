@@ -6,3 +6,6 @@ CREATE TABLE event (
 
     CONSTRAINT event_pkey PRIMARY KEY (id)
 );
+
+GRANT SELECT ON TABLE event TO demo;
+
