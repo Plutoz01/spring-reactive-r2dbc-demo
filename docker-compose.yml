@@ -13,7 +13,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
   pg-admin:
-    container_name: pgAdmin4-pg-spring-reactive-r2dbc-demo
+    container_name: pgAdmin4-spring-reactive-r2dbc-demo
     image: dpage/pgadmin4:latest
     restart: on-failure
     volumes:
@@ -33,6 +33,17 @@ services:
       #   DEBUG    10
       #   NOTSET    0
       PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 30
+
+  flyway:
+    container_name: flyway-spring-reactive-r2dbc-demo
+    image: flyway/flyway
+    volumes:
+      - ./ops/flyway/sql:/flyway/sql:ro
+    command: migrate
+    environment:
+      FLYWAY_URL: jdbc:postgresql://pg-db/demo-spring-reactive-r2dbc
+      FLYWAY_USER: flyway
+      FLYWAY_PASSWORD: ${FLYWAY_PASSWORD}
 
 volumes:
   postgres-data:

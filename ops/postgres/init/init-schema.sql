@@ -1,1 +1,17 @@
 CREATE DATABASE "demo-spring-reactive-r2dbc";
+
+CREATE ROLE flyway WITH
+	LOGIN
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	PASSWORD 'myPassword#1';
+GRANT ALL ON DATABASE "demo-spring-reactive-r2dbc" TO flyway WITH GRANT OPTION;
+
+CREATE ROLE demo WITH
+	LOGIN
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	PASSWORD 'myPassword#1';
+GRANT CONNECT ON DATABASE "demo-spring-reactive-r2dbc" TO demo;
