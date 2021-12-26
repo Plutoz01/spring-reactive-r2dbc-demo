@@ -1,1 +1,11 @@
+server:
+  port: 8100
 
+spring:
+  application:
+    name: Spring Reactive with R2DBC demo
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/demo-spring-reactive-r2dbc
+    username: demo
+    password: myPassword#1 #TODO: remove this and use as ENV var
