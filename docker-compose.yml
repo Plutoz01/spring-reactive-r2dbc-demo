@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  pg-db:
+    container_name: pg-spring-reactive-r2dbc-demo
+    image: postgres:14.1-alpine
+    restart: on-failure
+    ports:
+      - 5432:5432
+    volumes:
+      - ./ops/postgres/init:/docker-entrypoint-initdb.d:ro
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+  pg-admin:
+    container_name: pgAdmin4-pg-spring-reactive-r2dbc-demo
+    image: dpage/pgadmin4:latest
+    restart: on-failure
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+      - ./ops/pgadmin/servers.json:/pgadmin4/servers.json:ro
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@demo.com
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      # Application log level - one of:
+      #   CRITICAL 50
+      #   ERROR    40
+      #   WARNING  30
+      #   SQL      25
+      #   INFO     20
+      #   DEBUG    10
+      #   NOTSET    0
+      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 30
+
+volumes:
+  postgres-data:
+  pgadmin-data:

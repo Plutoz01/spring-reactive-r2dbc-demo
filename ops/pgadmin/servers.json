@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Demo - Spring Reactive with R2DBC",
+      "Group": "Local docker",
+      "Port": 5432,
+      "Username": "postgres",
+      "Host": "pg-db",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "postgres",
+      "Shared": true
+    }
+  }
+}
